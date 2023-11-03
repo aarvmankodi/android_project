@@ -11,9 +11,9 @@
         android:id="@+id/Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To Do Tasks"
+        android:text="@string/to_do_tasks"
         android:textColor="@color/background"
-        android:textSize="32sp"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,8 +36,9 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:clickable="true"
+        android:contentDescription="@string/new_task"
         android:tint="@color/black"
-        app:backgroundTint="@color/white"
+        app:backgroundTint="@color/background"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976"
-        app:rippleColor="@color/background"
+        app:rippleColor="@color/black"
         app:srcCompat="@drawable/baseline_done_all_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

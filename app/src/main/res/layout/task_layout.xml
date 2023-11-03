@@ -5,14 +5,14 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
     app:cardElevation="7dp"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp">
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        android:padding="8dp">
+        android:padding="4dp">
 
         <CheckBox
             android:id="@+id/check_box"
@@ -21,7 +21,7 @@
             android:buttonTint="@color/background"
             android:text="Dummy Text"
             android:textColor="@color/white"
-            android:paddingStart="8dp" />
+            android:paddingStart="4dp" />
 
     </RelativeLayout>
 
