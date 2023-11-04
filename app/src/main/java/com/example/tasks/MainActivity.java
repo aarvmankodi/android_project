@@ -1,6 +1,7 @@
 package com.example.tasks;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +52,10 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
                 AddNewTask.newInstance().show(getSupportFragmentManager() , AddNewTask.TAG);
             }
         });
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerViewTouchHelper(adapter));
+        itemTouchHelper.attachToRecyclerView(mrecyclerView);
     }
+
 
     @Override
     public void onDialogClose(DialogInterface dialogInterface) {

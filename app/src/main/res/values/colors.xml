@@ -2,5 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#FF9800</color>
+    <color name="background">#FFFF9800</color>
+    <color name="task_colour">#A9000000</color>
 </resources>

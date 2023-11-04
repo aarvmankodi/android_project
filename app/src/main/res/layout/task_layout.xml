@@ -19,9 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="@color/background"
+            android:paddingStart="4dp"
             android:text="Dummy Text"
-            android:textColor="@color/white"
-            android:paddingStart="4dp" />
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 

@@ -2,4 +2,6 @@
     <string name="app_name">Tasks</string>
     <string name="new_task">New task</string>
     <string name="to_do_tasks">To Do Tasks</string>
+    <string name="save">Save</string>
+    <string name="enter_new_task">Enter new task</string>
 </resources>
