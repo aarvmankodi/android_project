@@ -21,16 +21,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String Col_1 = "ID";
     private static final String Col_2 = "TASK";
     private static final String Col_3 = "STATUS";
+    private static final String Col_4 = "DATE";
+
+
 
 
 
     public DataBaseHelper(@Nullable Context context) {
-        super(context, DataBase_Name, null, 1);
+        super(context, DataBase_Name, null, 4);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + Table_Name + "(ID INTEGER PRIMARY KEY AUTOINCREMENT , TASK TEXT , STATUS INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + Table_Name + "(ID INTEGER PRIMARY KEY AUTOINCREMENT , TASK TEXT , STATUS INTEGER , DATE TEXT)");
     }
 
     @Override
@@ -45,15 +48,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(Col_2 , model.getTask());
         values.put(Col_3 , 0);
+        values.put(Col_4 , model.getDate());
 
         db.insert(Table_Name , null , values);
     }
 
-    public void updateTask(int id , String new_task)
+    public void updateTask(int id , String new_task , String new_date)
     {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(Col_2 , new_task);
+        values.put(Col_4 , new_date);
         db.update(Table_Name , values , "ID=?" , new String[]{String.valueOf(id)});
     }
 
@@ -90,6 +95,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         task.setId(cursor.getInt(cursor.getColumnIndexOrThrow(Col_1)));
                          task.setTask(cursor.getString(cursor.getColumnIndexOrThrow(Col_2)));
                          task.setStatus(cursor.getInt(cursor.getColumnIndexOrThrow(Col_3)));
+                         task.setDate(cursor.getString(cursor.getColumnIndexOrThrow(Col_4)));
                          modelList.add(task);
                      }while (cursor.moveToNext());
                  }

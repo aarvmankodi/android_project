@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         final ToDoModel item = mlist.get(position);
         holder.mcheckbox.setText(item.getTask());
         holder.mcheckbox.setChecked(toBoolean(item.getStatus()));
+        holder.mdatetxt.setText(item.getDate());
+
         holder.mcheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -86,6 +89,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         Bundle b = new Bundle();
         b.putInt("id" , item.getId());
         b.putString("task" , item.getTask());
+        b.putString("date" , item.getDate());
         AddNewTask addNewTask = new AddNewTask();
         addNewTask.setArguments(b);
         addNewTask.show(activity.getSupportFragmentManager() , addNewTask.getTag());
@@ -103,10 +107,12 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         CheckBox mcheckbox;
+        EditText mdatetxt;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mcheckbox = itemView.findViewById(R.id.check_box);
+            mdatetxt = itemView.findViewById(R.id.editTextDate);
         }
     }
 }

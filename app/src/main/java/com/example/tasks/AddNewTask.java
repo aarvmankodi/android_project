@@ -23,9 +23,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
     public static final String TAG = "AddNewTask";
 
-    //widgts
+    //widgets
     private EditText mEdit;
     private Button SaveButton;
+    private EditText mDate;
     private DataBaseHelper myDB;
 
     public static AddNewTask newInstance()
@@ -47,6 +48,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
         mEdit = view.findViewById(R.id.edittext);
         SaveButton = view.findViewById(R.id.savebutton);
+        mDate = view.findViewById(R.id.editTextDate2);
 
         myDB = new DataBaseHelper(getActivity());
 
@@ -57,7 +59,9 @@ public class AddNewTask extends BottomSheetDialogFragment {
         if (b != null) {
             update = true;
             String task = b.getString("task", "New Task");
+            String date = b.getString("date" , "Enter date");
             mEdit.setText(task);
+            mDate.setText(date);
 
             if (task.length() > 0) {
                 SaveButton.setEnabled(false);
@@ -82,6 +86,33 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 }
             }
 
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().equals(""))
+                {
+                    SaveButton.setEnabled(false);
+                    SaveButton.setBackgroundColor(Color.GRAY);
+                }else
+                {
+                    SaveButton.setEnabled(true);
+                    SaveButton.setBackgroundColor(getResources().getColor(R.color.background));
+                }
+            }
+
+
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -92,17 +123,20 @@ public class AddNewTask extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String text = mEdit.getText().toString();
+                String date = mDate.getText().toString();
 
                 if(finalUpdate)
                 {
-                    myDB.updateTask(b.getInt("id") , text);
+                    myDB.updateTask(b.getInt("id") , text , date);
                 }
                 else
                 {
                     ToDoModel item = new ToDoModel();
                     item.setTask(text);
                     item.setStatus(0);
+                    item.setDate(date);
                     myDB.insertTask(item);
+
                 }
 
                 dismiss();
